@@ -9,7 +9,7 @@ export const studentController = {
       course, 
       password, 
       complementHours, 
-      isFaciliator=false 
+      isFacilitator=false 
     } = req.body;
     
     try {
@@ -20,7 +20,7 @@ export const studentController = {
           course,
           password,
           complement_hours: complementHours,
-          is_facilitator: isFaciliator
+          is_facilitator: isFacilitator
         }).returning('id_student');
 
       return res.status(201).json({ id });
