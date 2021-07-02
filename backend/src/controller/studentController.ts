@@ -5,6 +5,8 @@ import connection from '../database/connection';
 export const studentController = {
   async create(req: Request, res: Response) {
     const { 
+      name,
+      login,
       matricula, 
       course, 
       password, 
@@ -17,6 +19,8 @@ export const studentController = {
         .insert({
           id_student: uuidV4(),
           matricula,
+          name, 
+          login,
           course,
           password,
           complement_hours: complementHours,
