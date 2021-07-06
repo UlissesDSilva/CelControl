@@ -14,7 +14,7 @@ describe('student', () => {
 
   it('should be create a login', async() => {
     const response = await request(app)
-      .post('/student/create')
+      .post('/student')
       .send({
         matricula: "67567567",
         course: "Engenharia de Software",
@@ -25,5 +25,11 @@ describe('student', () => {
         login: "jv"
       })
     expect(response.status).toEqual(201);
+  });
+
+  it('should be return all students of Engenharia', async() => {
+    const response = await request(app)
+      .get('/student-filter?course=Engenharia');
+    expect(response.status).toEqual(200);
   })
 })

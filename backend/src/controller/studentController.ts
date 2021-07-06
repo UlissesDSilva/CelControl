@@ -30,8 +30,32 @@ export const studentController = {
       return res.status(201).json({ id });
 
     } catch(err) {
-      console.log(err);
       return res.status(400).json({ message: 'Erro ao criar aluno' })
     }
-  }
+  },
+
+  async index(req: Request, res: Response) {
+    try {
+      const response = await connection('student')
+        .select('*');
+
+      return res.json(response);
+    } catch(err) {
+      throw new Error(err);
+    }
+  },
+
+  async getStudentsPerCourse(req: Request, res: Response) {
+    const { course } = req.query;
+    
+    try {
+      const response = await connection('student')
+        .where('course', 'like', `%${String(course)}%`)
+        .select('*');
+      
+      return res.json(response);
+    } catch(err) {
+      throw new Error(err);
+    }
+  },
 }
