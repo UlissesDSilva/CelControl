@@ -58,4 +58,8 @@ export const studentController = {
       throw new Error(err);
     }
   },
+
+  async getAllParticipantsFromSpecificCelula(req: Request, res: Response) {
+    
+  },
 }
