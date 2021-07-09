@@ -1,3 +1,4 @@
+import { HiMenu } from 'react-icons/hi';
 import styled from 'styled-components';
 
 export const Container = styled.header`
@@ -12,8 +13,17 @@ export const Container = styled.header`
   padding: 0 40px;
 
   span {
+    display: flex;
     color: #FFF;
     font-size: 18px;
+    align-items: center;
+
+    svg{
+      width: 24px;
+      height: 24px;
+      margin-right: 5px;
+      cursor: pointer;
+    }
 
     &.application-name {
       font-size: 24px;
