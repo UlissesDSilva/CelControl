@@ -22,6 +22,21 @@ module.exports = {
 
     useNullAsDefault: true,
   },
+  production: {
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
+    migrations: {
+      directory: path.resolve(__dirname, 'dist', 'src', 'database', 'migrations'),
+    },
+    seeds: {
+      directory: path.resolve(__dirname, 'dist', 'src', 'database', 'seeds')
+    },
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    },
+  },
+
   test: {
     client: process.env.DB_CLIENT,
     version: process.env.DB_VERSION,
