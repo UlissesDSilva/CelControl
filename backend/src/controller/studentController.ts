@@ -6,11 +6,11 @@ export const studentController = {
   async create(req: Request, res: Response) {
     const { 
       name,
-      login,
       matricula, 
       course, 
       password, 
       complementHours, 
+      phone, 
       isFacilitator=false 
     } = req.body;
     
@@ -20,9 +20,9 @@ export const studentController = {
           id_student: uuidV4(),
           matricula,
           name, 
-          login,
           course,
           password,
+          phone,
           complement_hours: complementHours,
           is_facilitator: isFacilitator
         }).returning('id_student');
@@ -30,6 +30,7 @@ export const studentController = {
       return res.status(201).json({ id });
 
     } catch(err) {
+      console.log(err);
       return res.status(400).json({ message: 'Erro ao criar aluno' })
     }
   },

@@ -4,9 +4,9 @@ export async function up(knex: Knex): Promise<void> {
   return knex.schema.createTable('student', (table) => {
     table.string('id_student').primary().notNullable();
     table.string('name').notNullable();
+    table.string('phone').notNullable();
     table.string('matricula').notNullable();
     table.string('course').notNullable();
-    table.string('login').notNullable();
     table.string('password').notNullable();
     table.string('complement_hours').notNullable();
     table.boolean('is_facilitator').defaultTo(false).notNullable(); 
