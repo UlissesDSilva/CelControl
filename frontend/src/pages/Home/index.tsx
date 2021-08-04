@@ -1,6 +1,8 @@
 import { Container, TopContainer } from "./styles";
 import { Celula } from '../../components/Celula/index'
 
+import { MenuSider } from '../../components/Menu'
+
 import fupImg from '../../assets/fup.svg';
 import lolImg from '../../assets/lol.svg';
 import cinemaImg from '../../assets/cinema.svg';
@@ -18,16 +20,18 @@ export function Home() {
   ]
   
   return (
-    <>
-      <TopContainer>
-        <img src={pacceImg} alt="Símbolo do PACCE" />
-        <span>Células</span>
-      </TopContainer>
-      <Container>
-        {celulas.map(celula => (
-          <Celula key={celula.id} name={celula.name} img={celula.img} />
-        ))}
-      </Container>    
-    </>
+    <div style={{display: 'flex'}}>
+      <div style={{margin: '0 auto'}}>
+        <TopContainer>
+          <img src={pacceImg} alt="Símbolo do PACCE" />
+          <span>Células</span>
+        </TopContainer>
+        <Container>
+          {celulas.map(celula => (
+            <Celula key={celula.id} name={celula.name} img={celula.img} />
+          ))}
+        </Container>  
+      </div>  
+    </div>
   )
 }

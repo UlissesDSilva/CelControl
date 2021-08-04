@@ -2,11 +2,11 @@ import React from 'react'
 import Modal from 'react-modal';
 import { Container } from './style'
 
-import { Celula } from '../Celula/'
+import { Celula } from '../../Celula'
 
-import pacceImg from '../../assets/pacce-symbol.svg';
-import close from '../../assets/close.svg';
-import fupImg from '../../assets/fup.svg';
+import pacceImg from '../../../assets/pacce-symbol.svg';
+import close from '../../../assets/close.svg';
+import fupImg from '../../../assets/fup.svg';
 
 const customStyles = {
   content: {

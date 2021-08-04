@@ -10,7 +10,7 @@ export const Container = styled.header`
   height: 80px;
   background: #00AFEF;
 
-  padding: 0 40px;
+  padding: 0 20px 0 10px;
 
   span {
     display: flex;

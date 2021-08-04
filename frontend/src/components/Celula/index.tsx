@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 import { Container } from './styles'
 
 import { Button } from '../Button/index'
@@ -20,8 +22,8 @@ export function Celula({ img, name }: CelulaProps) {
 
       <span>Informações</span>
 
-      <Button>
-        Cadastro
+      <Button style={{textDecoration: 'none'}}>
+        <Link to="cadastroInCelula" style={{textDecoration: 'none', color: '#fff'}}> Cadastro </Link>
       </Button>
 
       <Button>
