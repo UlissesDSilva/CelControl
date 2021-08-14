@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
 import { HiMenu } from 'react-icons/hi';
 import { Container } from "./styles";
-import { ModalFacilitator } from '../Modal/ModalFacilitador';
 import { MenuSider } from '../Menu'
 import { Affix, Button } from 'antd'
 import {

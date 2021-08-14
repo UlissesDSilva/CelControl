@@ -3,13 +3,10 @@ import { Link } from 'react-router-dom'
 
 import { Menu } from 'antd';
 import {
-  AppstoreOutlined,
-  MenuUnfoldOutlined,
-  MenuFoldOutlined,
-  PieChartOutlined,
-  DesktopOutlined,
-  ContainerOutlined,
-  MailOutlined,
+  HomeOutlined,
+  LoginOutlined,
+  LinkOutlined,
+  FileDoneOutlined,
 } from '@ant-design/icons';
 
 type MenuSiderProps = {
@@ -27,17 +24,17 @@ export function MenuSider(props: MenuSiderProps) {
             inlineCollapsed={props.collapsed}
             style={{height: '100vh'}}
           >
-            <Menu.Item key="1" icon={<PieChartOutlined />}>
+            <Menu.Item key="1" icon={<HomeOutlined />}>
               <Link to='/'> Home </Link>
             </Menu.Item>
-            <Menu.Item key="2" icon={<PieChartOutlined />}>
-              <a href="https://linktr.ee/pacceufcqx" target='_blank' >Pacce</a>
+            <Menu.Item key="2" icon={<LinkOutlined />}>
+              <a href="https://linktr.ee/pacceufcqx" target='_blank' > Pacce - Links</a>
             </Menu.Item>
-            <Menu.Item key="3" icon={<DesktopOutlined />}>
+            <Menu.Item key="3" icon={<LoginOutlined />}>
               <Link to="/loginFacilitador">Login - Facilitador</Link>
             </Menu.Item>
-            <Menu.Item key="4" icon={<ContainerOutlined />}>
-              Cadastro
+            <Menu.Item key="4" icon={<FileDoneOutlined />}>
+              <Link to='/loginPacce'> Cadastrar Célula </Link>
             </Menu.Item>
           </Menu>
         </div>

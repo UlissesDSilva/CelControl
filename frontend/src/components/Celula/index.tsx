@@ -5,11 +5,13 @@ import { Container } from './styles'
 import { Button } from '../Button/index'
 
 type CelulaProps = {
-  img: string,
+  idCel: number,
+  img?: string,
   name: string,
+  description: string
 }
 
-export function Celula({ img, name }: CelulaProps) {
+export function Celula({ idCel, img, name, description }: CelulaProps) {
   return (
     <Container>
       <img
@@ -20,14 +22,14 @@ export function Celula({ img, name }: CelulaProps) {
 
       <h1>{name}</h1>
 
-      <span>Informações</span>
+      <span>{description}</span>
 
       <Button style={{textDecoration: 'none'}}>
-        <Link to="cadastroInCelula" style={{textDecoration: 'none', color: '#fff'}}> Cadastro </Link>
+        <Link to="cadastroAluno" style={{textDecoration: 'none', color: '#fff'}}> Cadastrar </Link>
       </Button>
 
       <Button>
-        Feedback
+        <Link to={`/feedback/${idCel}`} style={{textDecoration: 'none', color: '#fff'}}> Feedback </Link>        
       </Button>
     </Container>
   );

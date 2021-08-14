@@ -1,23 +1,50 @@
+import { useState, useEffect } from "react";
 import { Container, TopContainer } from "./styles";
 import { Celula } from '../../components/Celula/index'
-
-import { MenuSider } from '../../components/Menu'
+import { api } from "../../services/api"; 
 
 import fupImg from '../../assets/fup.svg';
-import lolImg from '../../assets/lol.svg';
 import cinemaImg from '../../assets/cinema.svg';
 import rpgImg from '../../assets/rpg.svg';
-import agoraImg from '../../assets/agora.svg';
 import pacceImg from '../../assets/pacce-symbol.svg';
 
+type CelulaProps = {
+  id_celula: number,
+  name: string,
+  description: string,
+  dias_celulas: string,
+  hours: string,
+  img?: string
+}
+
 export function Home() {
-  const celulas = [
-    { id: 1, name: 'FUP', img: fupImg },
-    { id: 2, name: 'RPG de mesa', img: rpgImg },
-    { id: 3, name: 'Pacce o Filme', img: cinemaImg },
-    { id: 4, name: 'Ágora', img: agoraImg },
-    { id: 5, name: 'Celulol', img: lolImg },
-  ]
+
+  const [ celulas, setCelulas ] = useState<CelulaProps[]>([])
+
+  async function getCel() {
+    
+    const imgs = [fupImg, cinemaImg, rpgImg]
+
+    try {
+      const response = await api.get<CelulaProps[]>('/celula')
+
+      let parseResponse:CelulaProps[] = []
+      response.data.forEach((res, indice: number) => {
+        parseResponse.push({
+          ...res,
+          img: imgs[indice]
+        })
+      })
+
+      setCelulas(parseResponse)
+    } catch (error) {
+      
+    }
+  }
+
+  useEffect(() => {
+    getCel()
+  }, []) 
   
   return (
     <div style={{display: 'flex'}}>
@@ -28,7 +55,7 @@ export function Home() {
         </TopContainer>
         <Container>
           {celulas.map(celula => (
-            <Celula key={celula.id} name={celula.name} img={celula.img} />
+            <Celula key={celula.id_celula} name={celula.name} img={celula?.img} description={celula.description} idCel={celula.id_celula}/>
           ))}
         </Container>  
       </div>  
