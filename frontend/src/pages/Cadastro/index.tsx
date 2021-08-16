@@ -169,7 +169,7 @@ export function CadastroCelula() {
     <Form name="complex-form" onFinish={onFinish} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} style={{margin: '40px auto', maxWidth: '80vw'}}>
       <Form.Item label="Info. da Célula" style={{ marginBottom: 0 }}>
         <Form.Item
-          name="Nome Celula"
+          name="name"
           rules={[{ required: true }]}
           style={{ display: 'inline-block', width: '25%' }}
         >
@@ -183,7 +183,7 @@ export function CadastroCelula() {
           <Input placeholder="Facilitador" />
         </Form.Item>
         <Form.Item
-          name="Descrição"
+          name="description"
           rules={[{ required: true }]}
           style={{ display: 'block', width: '50.7%', margin: '0 8px 8px 0' }}
         >
