@@ -25,7 +25,7 @@ export function Celula({ idCel, img, name, description }: CelulaProps) {
       <span>{description}</span>
 
       <Button style={{textDecoration: 'none'}}>
-        <Link to="cadastroAluno" style={{textDecoration: 'none', color: '#fff'}}> Cadastrar </Link>
+        <Link to={`cadastroAluno/${idCel}`} style={{textDecoration: 'none', color: '#fff'}}> Cadastrar </Link>
       </Button>
 
       <Button>

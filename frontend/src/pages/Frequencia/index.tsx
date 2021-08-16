@@ -1,64 +1,95 @@
-import { render } from '@testing-library/react';
-import { Table, Tag, Space, Radio } from 'antd';
+import { useEffect, useState } from 'react';
+import { api } from '../../services/api';
+import { Table, Tag, Space, Checkbox } from 'antd';
 
-const columns = [
-  {
-    title: 'Nome',
-    dataIndex: 'name',
-    key: 'name',
-    render: (data: any) => <a>{data}</a>,
-  },
-  {
-    title: 'Curso',
-    dataIndex: 'curso',
-    key: 'curso'
-  },
-  {
-    title: 'Matrícula',
-    dataIndex: 'matricula',
-    key: 'matricula',
-  },
-  {
-    title: 'Célula',
-    key: 'cel',
-    dataIndex: 'cel'
-  },
-  {
-    title: 'Presença',
-    key: 'action',
-    render: () => (
-      <Radio></Radio>
-    ),
-  },
-];
-
-const data = [
-  {
-    key: '1',
-    name: 'Ulisses Queiroz',
-    curso: 'SI',
-    matricula: '471xxxx',
-    cel: 'Pacce o Filme'
-  },
-  {
-    key: '2',
-    name: 'João Victor',
-    curso: 'SI',
-    matricula: '453xxx',
-    cel: 'Pacce o Filme'
-  },
-  {
-    key: '3',
-    name: 'Rafael Lopes',
-    curso: 'SI',
-    matricula: '341xxxx',
-    cel: 'Pacce o Filme'
-  },
-];
+type StudentProps = {
+  id_student: string,
+  name: string,
+  phone: string,
+  matricula: string,
+  course: string,
+  password: string,
+  complement_hours: number,
+  is_facilitator?: boolean,
+  celula_name: string,
+  id_celula: number,
+  description: string
+}
 
 export function FrequenciaAluno(){
-    return(
-        <Table columns={columns} dataSource={ data } style={{width: '80vw', margin: '0 12%'}}/>
-    )
+
+  const [student, setStudent] = useState<StudentProps[]>([]);
+
+  const columns = [
+    {
+      title: 'Nome',
+      dataIndex: 'name',
+      key: 'id_student',
+      render: (data: any) => <a>{data}</a>,
+    },
+    {
+      title: 'Curso',
+      dataIndex: 'course',
+      key: 'course'
+    },
+    {
+      title: 'Matrícula',
+      dataIndex: 'matricula',
+      key: 'matricula'
+    },
+    {
+      title: 'Célula',
+      key: 'celula_name',
+      dataIndex: 'celula_name'
+    },
+    {
+      title: 'Presença',
+      key: 'name',
+      render: (_data: StudentProps) => (
+        <Checkbox 
+          onChange={(evt) => {
+            handleUpdatePresency(_data, evt.target.checked)
+          }}
+        />
+      ),
+    },
+  ];
+
+  useEffect(() => {
+    async function getStudent() {
+      try {
+      const response = await api.get('student')
+      setStudent(response.data)
+      
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getStudent()
+  }, [])
+  
+  async function handleUpdatePresency(dataStudent: StudentProps, presency: boolean) {
+    const data = {
+      student: dataStudent.id_student,
+      presency
+    }
+    try {
+      await api.patch(`/frequency?celulaId=${dataStudent.id_celula}`, data)
+    } catch (error) {
+      console.log(error);
+      
+    }
+  }
+    
+  const data = student.map((studant, index) => {
+    return {
+      ...studant,
+      key: index
+    }
+  })
+
+  return(
+    <Table columns={columns} dataSource={ data } style={{width: '80vw', margin: '0 12%'}} />
+  )
     
 }

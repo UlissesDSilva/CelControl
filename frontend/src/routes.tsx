@@ -14,13 +14,13 @@ export function Routes() {
         <Header />
         <Switch>
           <Route path="/" exact component={Home}/>
-          <Route path="/loginFacilitador" exact component={LoginFacilitador}/>
-          <Route path="/loginPacce" exact component={LoginPacce}/>
-          <Route path="/cadastroAluno" exact component={CadastroAluno}/>
+          <Route path="/loginFacilitador" component={LoginFacilitador}/>
+          <Route path="/loginPacce" component={LoginPacce}/>
+          <Route path="/cadastroAluno/:id" exact component={CadastroAluno}/>
           <Route path="/cadastroCelula" exact component={CadastroCelula}/>
-          <Route path="/feedback/:id" exact component={Feedback} />
-          <Route path="/frequencia" exact component={FrequenciaAluno} />
-          <Route path="/homeFacilitador" exact component={HomeFacilitador} />
+          <Route path="/feedback/:id" component={Feedback} />
+          <Route path="/frequencia" component={FrequenciaAluno} />
+          <Route path="/homeFacilitador" component={HomeFacilitador} />
         </Switch>
       </BrowserRouter>
     </>

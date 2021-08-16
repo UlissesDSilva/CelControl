@@ -13,8 +13,9 @@ export function Feedback() {
   
  async function onSubmit(values: any) {
 
-  if( !values.name)
+  if( !values.name) { 
     values.name = ''
+  }
 
   try {
     await api.post(`/feedback?celula=${idCel}`, values )
