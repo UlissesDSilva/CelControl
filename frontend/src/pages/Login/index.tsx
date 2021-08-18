@@ -2,6 +2,7 @@ import React from 'react';
 import { useHistory } from 'react-router-dom'
 import { api } from '../../services/api';
 import { Form, Input, Button } from 'antd';
+import { toast } from 'react-toastify';
 
 export function LoginFacilitador() {
   const history = useHistory()
@@ -11,7 +12,10 @@ export function LoginFacilitador() {
       await api.post('/session', values)
       history.push('/homeFacilitador')
     } catch (error) {
-      
+      const errorMsg = error.response.data.error;
+      toast.error(errorMsg, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   }
 
@@ -53,10 +57,13 @@ export function LoginPacce() {
   async function onFinish(values: any) {
 
     try {
-      await api.post('/adm', values)
+      await api.post('/adm-login', values)
       history.push('/cadastroCelula')
     } catch (error) {
-      
+      const errorMsg = error.response.data.error;
+      toast.error(errorMsg, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   }
 

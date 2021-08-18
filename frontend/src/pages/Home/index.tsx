@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Container, TopContainer } from "./styles";
 import { Celula } from '../../components/Celula/index'
 import { api } from "../../services/api"; 
+import { Spin } from 'antd';
+import { LoadingOutlined } from '@ant-design/icons';
 
 import fupImg from '../../assets/fup.svg';
 import cinemaImg from '../../assets/cinema.svg';
@@ -19,7 +21,23 @@ type CelulaProps = {
 
 export function Home() {
 
-  const [ celulas, setCelulas ] = useState<CelulaProps[]>([])
+  const [ celulas, setCelulas ] = useState<CelulaProps[]>([]);
+
+  const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
+
+  const CelulaLoading = () => (
+    <div
+      style={{
+        flex: 1,
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Spin size="large" tip="Carregando células, por favor aguarde" indicator={antIcon} />
+    </div>
+  )
 
   async function getCel() {
     
@@ -47,18 +65,22 @@ export function Home() {
   }, []) 
   
   return (
-    <div style={{display: 'flex'}}>
-      <div style={{margin: '0 auto'}}>
-        <TopContainer>
-          <img src={pacceImg} alt="Símbolo do PACCE" />
-          <span>Células</span>
-        </TopContainer>
-        <Container>
-          {celulas.map(celula => (
-            <Celula key={celula.id_celula} name={celula.name} img={celula?.img} description={celula.description} idCel={celula.id_celula}/>
-          ))}
-        </Container>  
-      </div>  
-    </div>
+    celulas.length ? (
+      <div style={{display: 'flex'}}>
+        <div style={{margin: '0 auto'}}>
+          <TopContainer>
+            <img src={pacceImg} alt="Símbolo do PACCE" />
+            <span>Células</span>
+          </TopContainer>
+          <Container>
+            {celulas.map(celula => (
+              <Celula key={celula.id_celula} name={celula.name} img={celula?.img} description={celula.description} idCel={celula.id_celula}/>
+            ))}
+          </Container>  
+        </div>  
+      </div>
+    ) : (
+      <CelulaLoading />
+    )
   )
 }
