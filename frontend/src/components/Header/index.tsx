@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { BiSearch } from 'react-icons/bi';
-import { HiMenu } from 'react-icons/hi';
 import { Container } from "./styles";
 import { MenuSider } from '../Menu'
 import { Affix, Button } from 'antd'

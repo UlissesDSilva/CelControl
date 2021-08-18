@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
-import { Table, Tag, Space, Checkbox } from 'antd';
+import { Table, Checkbox } from "antd";
 
 type StudentProps = {
   id_student: string,
@@ -25,7 +25,7 @@ export function FrequenciaAluno(){
       title: 'Nome',
       dataIndex: 'name',
       key: 'id_student',
-      render: (data: any) => <a>{data}</a>,
+      render: (data: any) => <span>{data}</span>,
     },
     {
       title: 'Curso',

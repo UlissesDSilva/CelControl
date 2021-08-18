@@ -1,4 +1,3 @@
-import { HiMenu } from 'react-icons/hi';
 import styled from 'styled-components';
 
 export const Container = styled.header`
