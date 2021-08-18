@@ -1,13 +1,10 @@
-import React, { FormEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Form, Input, Button } from 'antd';
 import { api } from '../../services/api'
+import { toast } from 'react-toastify';
 
 
 export function Feedback() {
-
-  const [ name, setName ] = useState('');
-  const [ text, setText ] = useState('');
   const params = useParams() as { id: string }
   const idCel = params.id
   
@@ -19,10 +16,15 @@ export function Feedback() {
 
   try {
     await api.post(`/feedback?celula=${idCel}`, values )
-    alert("Enviado!")
+    toast.success('Feedback criado com sucesso!!!', {
+      position: toast.POSITION.TOP_RIGHT,
+    })
   } catch (error) {
-    console.log(error);
-    
+    const errMsg = error.response.data.error;
+
+    toast.error(errMsg, {
+      position: toast.POSITION.TOP_RIGHT,
+    }) 
   }
  } 
 
