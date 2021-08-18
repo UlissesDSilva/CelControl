@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useParams } from 'react-router';
 import { useHistory } from 'react-router-dom' 
 import { api } from '../../services/api';
-import { Form, Input, Button, Select, Radio } from 'antd';
+import { Form, Input, Button, Select, Radio } from "antd";
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 
@@ -54,14 +54,14 @@ export function CadastroAluno() {
   };
 
   return (
-    <div style={{ width: '80vw', margin: '40px 10%' }}>
-      <Form name="complex-form" onFinish={onFinish} style={{width: '100%'}}>
+    <div style={{width: '80vw', margin: '40px auto'}}>
+      <Form name="complex-form" onFinish={onFinish} style={{ display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
         <Form.Item required>
           <Form.Item
             label="Nome"
             name="name"
             rules={[{ required: true }]}
-            style={{ display: 'inline-block', width: '25%' }}
+            style={{ display: 'inline-block', width: '250px' }}
           >
             <Input placeholder="Nome" />
           </Form.Item>
@@ -69,23 +69,30 @@ export function CadastroAluno() {
             label='Telefone'
             name="phone"
             rules={[{ required: true }]}
-            style={{ display: 'inline-block', width: '25%', margin: '0 8px' }}
+            style={{ display: 'inline-block', width: '250px', marginLeft: '8px' }}
           >
             <Input placeholder="Telefone" />
           </Form.Item>
+
           <Form.Item
             label='Curso'
             name="course"
             rules={[{ required: true }]}
-            style={{ display: 'block', width: '50.7%'}}
+            style={{ display: 'block', width: '508px'}}
           >
-            <Input placeholder="Curso" />
+            <Select placeholder="Selecioane um curso">
+              <Option value="Sistema de Informação">Sistema de Informação</Option>
+              <Option value="Engenharia de Software">Engenharia de Software</Option>
+              <Option value="Engenharia de Computação">Engenharia de Computação</Option>
+              <Option value="Design Digital">Design Digital</Option>
+              <Option value="Ciência da Computação">Ciência da Computação</Option>
+            </Select>
           </Form.Item>
           <Form.Item
             label='Matrícula'
             name="matricula"
             rules={[{ required: true }]}
-            style={{ display: 'inline-block', width: '25%' }}
+            style={{ display: 'inline-block', width: '250px' }}
           >
             <Input placeholder="Matrícula" />
           </Form.Item>
@@ -93,19 +100,22 @@ export function CadastroAluno() {
             label='Senha'
             name="password"
             rules={[{ required: true }]}
-            style={{ display: 'inline-block', width: '25%', margin: '0 8px' }}
+            style={{ display: 'inline-block', width: '250px', marginLeft: '8px' }}
           >
             <Input.Password placeholder="Senha" />
           </Form.Item>
-          <div style={{display: 'flex', flexDirection: 'column'}}>
-            <strong> Horário da célula {celulasHours}</strong>
-            <Radio onChange={() => handleConfirm()}> Confirmação de horários </Radio>
-          </div>        
-          <Form.Item label=" " colon={false} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-            <Button type="primary" htmlType="submit" style={{background: '#00AFEF', borderRadius: '50px'}} disabled={disabled}>
+
+          <Form.Item>
+            <div style={{display: 'inline-block'}}>
+              <strong style={{display: 'block'}}> Horário da célula {celulasHours}</strong>
+              <Radio onChange={() => handleConfirm()}> Confirmação de horários </Radio>
+            </div>
+            <Button type="primary" htmlType="submit" style={{background: '#00AFEF', borderRadius: '50px', marginLeft: '220px'}} disabled={disabled}>
               Cadastrar
-            </Button>
-          </Form.Item> 
+            </Button> 
+          </Form.Item>
+          {/* <div style={{display: 'flex', flexDirection: 'column'}}>
+          </div>         */}
         </Form.Item>
         
       </Form>
@@ -197,62 +207,67 @@ export function CadastroCelula() {
   };
 
   return (
-    <Form name="complex-form" onFinish={onSubmit} labelCol={{ span: 8 }} wrapperCol={{ span: 16 }} style={{margin: '40px auto', maxWidth: '80vw'}}>
-      <Form.Item label="Info. da Célula" style={{ marginBottom: 0 }}>
-        <Form.Item
-          name="name"
-          rules={[{ required: true }]}
-          style={{ display: 'inline-block', width: '25%' }}
-        >
-          <Input placeholder="Nome da Célula" />
-        </Form.Item>
-        <Form.Item
-          name="facilitator"
-          rules={[{ required: true }]}
-          style={{ display: 'inline-block', width: '25%', margin: '0 8px' }}
-        >
-          <Input placeholder="Facilitador" />
-        </Form.Item>
-        <Form.Item
-          name="description"
-          rules={[{ required: true }]}
-          style={{ display: 'block', width: '50.7%', margin: '0 8px 8px 0' }}
-        >
-          <Input.TextArea placeholder="Descrição" autoSize={{ minRows: 3, maxRows: 5 }}/>
-        </Form.Item>
-      </Form.Item>
-      <Form.Item label="Matricula e Senha" style={{ marginTop: '25px', marginBottom: 0 }}>
-        <Form.Item
-          name="matricula"
-          rules={[{ required: true }]}
-          style={{ display: 'inline-block', width: '25%' }}
-        >
-          <Input placeholder="Matrícula" />
-        </Form.Item>
-        <Form.Item
-          name="password"
-          rules={[{ required: true }]}
-          style={{ display: 'inline-block', width: '25%', margin: '0 8px' }}
-        >
-          <Input.Password placeholder="Senha" />
-        </Form.Item>
-      </Form.Item>
+    <div style={{width: '80vw', margin: '40px auto'}}>
+      <Form name="complex-form" onFinish={onSubmit} style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center'}}>
+        <Form.Item required>
+          <Form.Item
+            label="Nome da célula"
+            name="name"
+            rules={[{ required: true }]}
+            style={{ display: 'inline-block', width: '250px' }}
+          >
+            <Input placeholder="Nome da Célula" />
+          </Form.Item>
+          <Form.Item
+            label="Nome do Facilitador"
+            name="facilitator"
+            rules={[{ required: true }]}
+            style={{ display: 'inline-block', width: '250px', marginLeft: '8px' }}
+          >
+            <Input placeholder="Facilitador" />
+          </Form.Item>
+          <Form.Item
+            label="Descrição da célula"
+            name="description"
+            rules={[{ required: true }]}
+            style={{ display: 'block', width: '508px'}}
+          >
+            <Input.TextArea placeholder="Descrição" autoSize={{ minRows: 3, maxRows: 5 }}/>
+          </Form.Item>
+          <Form.Item
+            label="Matrícula do facilitador"
+            name="matricula"
+            rules={[{ required: true }]}
+            style={{ display: 'inline-block', width: '250px' }}
+          >
+            <Input placeholder="Matrícula" />
+          </Form.Item>
+          <Form.Item
+            label="Senha"
+            name="password"
+            rules={[{ required: true }]}
+            style={{ display: 'inline-block', width: '250px', marginLeft: '8px' }}
+          >
+            <Input.Password placeholder="Senha" />
+          </Form.Item>
+          <Form.Item>
+            <Select style={{display: 'inline-block', width: '250px', marginRight: '8px'}} placeholder="Selecione um dia" onChange={onChangeSemana}>
+              {renderWeekDaySelect()}
+            </Select>
 
-      <Form.Item style={{margin: '0 auto'}} >
-        <Select style={{display: 'inline-block', width: '10%', marginRight: '10px'}} placeholder="Selecione um dia" onChange={onChangeSemana}>
-          {renderWeekDaySelect()}
-        </Select>
+            <Select style={{display: 'inline-block', width: '250px'}} placeholder="Selecione um dia" onChange={onChangeHours}>
+              {renderHoursSelect()}
+            </Select>
+          </Form.Item>
+          <Form.Item>
+            <Button type="primary" htmlType='submit' style={{background: '#00AFEF', borderRadius: '50px'}}>
+              Cadastrar
+            </Button>
+          </Form.Item> 
+        </Form.Item>
 
-        <Select style={{display: 'inline-block', width: '10%'}} placeholder="Selecione um dia" onChange={onChangeHours}>
-          {renderHoursSelect()}
-        </Select>
-      </Form.Item>
-              
-      <Form.Item label=" " colon={false} style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-        <Button type="primary" htmlType='submit' style={{background: '#00AFEF', borderRadius: '50px'}}>
-          Cadastrar
-        </Button>
-      </Form.Item> 
-    </Form>
+                
+      </Form>
+    </div>
   );
 };

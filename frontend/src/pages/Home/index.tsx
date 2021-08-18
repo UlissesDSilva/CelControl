@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Container, TopContainer } from "./styles";
 import { Celula } from '../../components/Celula/index'
 import { api } from "../../services/api"; 
-import { Spin } from 'antd';
+import { Spin } from "antd";
 import { LoadingOutlined } from '@ant-design/icons';
 
 import fupImg from '../../assets/fup.svg';
@@ -41,13 +41,13 @@ export function Home() {
 
   async function getCel() {
     
-    const imgs = [fupImg, cinemaImg, rpgImg]
+    const imgs = [fupImg, cinemaImg, rpgImg, pacceImg]
 
     try {
       const response = await api.get<CelulaProps[]>('/celula')
 
       let parseResponse:CelulaProps[] = []
-      response.data.forEach((res, indice: number) => {
+      response.data.forEach((res: CelulaProps, indice: number) => {
         parseResponse.push({
           ...res,
           img: imgs[indice]
