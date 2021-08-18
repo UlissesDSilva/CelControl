@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 
-import { Menu } from 'antd';
+import { Menu } from "antd";
 import {
   HomeOutlined,
   LoginOutlined,
@@ -28,7 +27,7 @@ export function MenuSider(props: MenuSiderProps) {
               <Link to='/'> Home </Link>
             </Menu.Item>
             <Menu.Item key="2" icon={<LinkOutlined />}>
-              <a href="https://linktr.ee/pacceufcqx" target='_blank' > Pacce - Links</a>
+              <a href="https://linktr.ee/pacceufcqx" target='_blank' rel='noreferrer'> Pacce - Links</a>
             </Menu.Item>
             <Menu.Item key="3" icon={<LoginOutlined />}>
               <Link to="/loginFacilitador">Login - Facilitador</Link>
