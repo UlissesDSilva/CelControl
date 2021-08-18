@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom'
 import { api } from '../../services/api';
 import { Form, Input, Button, Select, Radio } from 'antd';
 import { useEffect } from 'react';
+import { toast } from 'react-toastify';
 
 const { Option } = Select;
 
@@ -38,10 +39,16 @@ export function CadastroAluno() {
       const response = await api.post('/student', data)
       const student = response.data.id
       await api.post('/celulaStudent', {student, celula: idCel})
-      alert("Aluno CAdastrado!")
+      toast.success('Aluno cadastrado na célula com sucesso!!!', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+
       history.push('/')
     } catch (error) {
-      console.log(error);
+      const errMsg = error.response.data.error;
+      toast.error(errMsg, {
+        position: toast.POSITION.TOP_RIGHT,
+      })
       
     }
   };
@@ -141,6 +148,7 @@ const hoursSelect = [
 
 // Cadastro de célula
 export function CadastroCelula() {
+  const history = useHistory();
 
   function renderWeekDaySelect() {
     return weekDaySelect.map(day => {
@@ -177,7 +185,12 @@ export function CadastroCelula() {
     }
     try {
       await api.post('/celula', data) 
-      alert("Célula cadastrada")
+      
+      toast.success('Nova célula cadastrada!', {
+        position: toast.POSITION.TOP_RIGHT,
+      })
+
+      history.push('/');
     } catch (error) {
       console.log(error)
     }
