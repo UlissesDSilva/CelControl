@@ -9,6 +9,8 @@ import { useState } from "react";
 import fupImg from '../../assets/fup.svg';
 import rpgImg from '../../assets/rpg.svg';
 import cinemaIMG from '../../assets/cinema.svg';
+import pacceImg from '../../assets/pacce-symbol.svg';
+
 interface CelulaProps {
   id_celula: number;
   name: string;
@@ -48,7 +50,7 @@ export function HomeFacilitador() {
  
   useEffect(() => {
     api.get<CelulaProps>(`/celula/${celulaId}`)
-      .then(res => setCelula({  ...res.data, img: imgArray.filter(img => img.celulaId===res.data.id_celula)[0]?.img }))
+      .then(res => setCelula({  ...res.data, img: imgArray.filter(img => img.celulaId===res.data.id_celula)[0]?.img ?? pacceImg }))
       .catch(err => console.log(err));
 
   }, [celulaId]);
