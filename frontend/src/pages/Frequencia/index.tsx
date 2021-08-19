@@ -1,29 +1,27 @@
 import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import { Table, Checkbox } from "antd";
+import { useParams } from 'react-router-dom';
 
 type StudentProps = {
-  id_student: string,
-  name: string,
-  phone: string,
-  matricula: string,
-  course: string,
-  password: string,
-  complement_hours: number,
-  is_facilitator?: boolean,
-  celula_name: string,
-  id_celula: number,
-  description: string
+  student_name: string;
+  matricula: string;
+  id_student: string;
+  phone:string;
+  celula_name: string;
+  id_celula: number
 }
 
 export function FrequenciaAluno(){
+  const params = useParams() as { idCelula: string };
+  const idCelula = params.idCelula;
 
   const [student, setStudent] = useState<StudentProps[]>([]);
 
   const columns = [
     {
       title: 'Nome',
-      dataIndex: 'name',
+      dataIndex: 'student_name',
       key: 'id_student',
       render: (data: any) => <span>{data}</span>,
     },
@@ -58,7 +56,7 @@ export function FrequenciaAluno(){
   useEffect(() => {
     async function getStudent() {
       try {
-      const response = await api.get('student')
+      const response = await api.get(`/celulaStudent/${idCelula}`)
       setStudent(response.data)
       
       } catch (error) {
@@ -66,7 +64,7 @@ export function FrequenciaAluno(){
       }
     }
     getStudent()
-  }, [])
+  }, [idCelula])
   
   async function handleUpdatePresency(dataStudent: StudentProps, presency: boolean) {
     const data = {

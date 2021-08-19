@@ -19,8 +19,8 @@ export function Routes() {
           <Route path="/cadastroAluno/:id" exact component={CadastroAluno}/>
           <Route path="/cadastroCelula" exact component={CadastroCelula}/>
           <Route path="/feedback/:id" component={Feedback} />
-          <Route path="/frequencia" component={FrequenciaAluno} />
-          <Route path="/homeFacilitador" component={HomeFacilitador} />
+          <Route path="/frequencia/:idCelula" component={FrequenciaAluno} />
+          <Route path="/homeFacilitador/:idCelula" component={HomeFacilitador} />
         </Switch>
       </BrowserRouter>
     </>

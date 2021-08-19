@@ -20,6 +20,10 @@ export const Container = styled.div`
     
     .contentRight {
         margin-right: 50px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 
     .contentLeft {
