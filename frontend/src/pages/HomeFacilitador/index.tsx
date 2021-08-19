@@ -48,7 +48,7 @@ export function HomeFacilitador() {
  
   useEffect(() => {
     api.get<CelulaProps>(`/celula/${celulaId}`)
-      .then(res => setCelula({  ...res.data, img: imgArray.filter(img => img.celulaId===res.data.id_celula)[0].img }))
+      .then(res => setCelula({  ...res.data, img: imgArray.filter(img => img.celulaId===res.data.id_celula)[0]?.img }))
       .catch(err => console.log(err));
 
   }, [celulaId]);
