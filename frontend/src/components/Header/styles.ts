@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const Container = styled.header`
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  /* justify-content: space-around; */
 
   width: 100%;
   height: 80px;
@@ -17,7 +17,7 @@ export const Container = styled.header`
     font-size: 18px;
     align-items: center;
 
-    svg{
+    svg {
       width: 24px;
       height: 24px;
       margin-right: 5px;
@@ -25,7 +25,13 @@ export const Container = styled.header`
     }
 
     &.application-name {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: center;
       font-size: 24px;
+      font-weight: bold;
+
     }
   }
 
