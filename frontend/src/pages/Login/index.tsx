@@ -9,10 +9,8 @@ export function LoginFacilitador() {
 
   async function onFinish(values: any) {
     try {
-      const response = await api.post('/session', values)
-      const celulaId = response.data.id;
-      history.push(`/homeFacilitador/${celulaId}`);
-    
+      await api.post('/session', values)
+      history.push('/homeFacilitador')
     } catch (error) {
       const errorMsg = error.response.data.error;
       toast.error(errorMsg, {
@@ -59,8 +57,13 @@ export function LoginPacce() {
   async function onFinish(values: any) {
 
     try {
-      await api.post('/adm-login', values)
-      history.push('/cadastroCelula')
+      const response = await api.post('/adm-login', values);
+      const admId = response.data.admId;
+
+      sessionStorage.setItem('celcontrol:admId', admId);
+      
+      history.push('/cadastroCelula');
+    
     } catch (error) {
       const errorMsg = error.response.data.error;
       toast.error(errorMsg, {

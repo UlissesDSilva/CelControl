@@ -21,7 +21,7 @@ export function MenuSider(props: MenuSiderProps) {
             defaultOpenKeys={['sub1']}
             mode="inline"
             inlineCollapsed={props.collapsed}
-            style={{height: '100vh'}}
+            style={{height: '100vh', display: 'flex', justifyContent: 'center', flexDirection: 'column' }}
           >
             <Menu.Item key="1" icon={<HomeOutlined />}>
               <Link to='/'> Home </Link>

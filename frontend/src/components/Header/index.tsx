@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
-import { BiSearch } from 'react-icons/bi';
+import React from 'react';
 import { Container } from "./styles";
-import { MenuSider } from '../Menu'
 import { Affix, Button } from 'antd'
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined
 } from '@ant-design/icons';
 
-export function Header() {
-  const [collapsed, setCollapsed] = useState(true);
+interface HeaderProps {
+  toggleCollapsed: () => void;
+  collapsed: boolean;
+}
 
-    const toggleCollapsed = () => {
-        setCollapsed(!collapsed)
-    };
+export function Header({ toggleCollapsed, collapsed }: HeaderProps) {
   return (
     <>
       <Affix offsetTop={0}>
@@ -25,12 +23,9 @@ export function Header() {
             pacceqx
           </span>
           <span className="application-name">CelControl</span>
-          <button type="button">
-            <BiSearch size={24} color="#FFF" />
-          </button>
         </Container>
       </Affix>
-      <MenuSider collapsed={collapsed}/>
+
     </>
   );
 }
