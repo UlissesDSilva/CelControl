@@ -9,8 +9,9 @@ export function LoginFacilitador() {
 
   async function onFinish(values: any) {
     try {
-      await api.post('/session', values)
-      history.push('/homeFacilitador')
+      const response = await api.post('/session', values)
+      const celulaId = response.data.id;
+      history.push(`/homeFacilitador/${celulaId}`);
     } catch (error) {
       const errorMsg = error.response.data.error;
       toast.error(errorMsg, {
