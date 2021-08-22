@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { useParams } from 'react-router';
-import { useHistory } from 'react-router-dom' 
+import { useHistory, useParams } from 'react-router-dom' 
 import { api } from '../../services/api';
 import { Form, Input, Button, Select, Radio } from "antd";
 import { useEffect } from 'react';
@@ -192,9 +191,16 @@ export function CadastroCelula() {
       ...values,
       hours: 2,
       diasCelulas: dayCel
-    }
+    };
+
+    const authorization = sessionStorage.getItem('celcontrol:admId');
+
     try {
-      await api.post('/celula', data) 
+      await api.post('/celula', data, {
+        headers: {
+          authorization
+        }
+      });
       
       toast.success('Nova célula cadastrada!', {
         position: toast.POSITION.TOP_RIGHT,
@@ -202,7 +208,11 @@ export function CadastroCelula() {
 
       history.push('/');
     } catch (error) {
-      console.log(error)
+      const errMsg = error.response.data.error;
+
+      toast.error(errMsg, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
     }
   };
 

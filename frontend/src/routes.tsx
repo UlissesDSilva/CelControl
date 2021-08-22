@@ -6,12 +6,21 @@ import { CadastroAluno, CadastroCelula } from './pages/Cadastro';
 import { Feedback } from './pages/Feedback';
 import { HomeFacilitador } from './pages/HomeFacilitador'
 import { FrequenciaAluno } from './pages/Frequencia'
+import { MenuSider } from './components/Menu';
+import { useState } from 'react';
 
 export function Routes() {
+  const [collapsed, setCollapsed] = useState(true);
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed)
+  };
+
   return (
     <>
       <BrowserRouter>
-        <Header />
+        <Header collapsed={collapsed} toggleCollapsed={toggleCollapsed}/>
+        <MenuSider collapsed={collapsed}/>
         <Switch>
           <Route path="/" exact component={Home}/>
           <Route path="/loginFacilitador" component={LoginFacilitador}/>
