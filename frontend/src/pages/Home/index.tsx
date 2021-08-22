@@ -74,7 +74,7 @@ export function Home() {
           </TopContainer>
           <Container>
             {celulas.map(celula => (
-              <Celula key={celula.id_celula} name={celula.name} img={celula?.img} description={celula.description} idCel={celula.id_celula}/>
+              <Celula key={celula.id_celula} name={celula.name} img={celula.img ?? pacceImg} description={celula.description} idCel={celula.id_celula}/>
             ))}
           </Container>  
         </div>  
