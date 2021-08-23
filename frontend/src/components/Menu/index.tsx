@@ -33,7 +33,7 @@ export function MenuSider(props: MenuSiderProps) {
               <Link to="/loginFacilitador">Login - Facilitador</Link>
             </Menu.Item>
             <Menu.Item key="4" icon={<FileDoneOutlined />}>
-              <Link to='/loginPacce'> Cadastrar Célula </Link>
+              <Link to='/loginPacce'> ADM </Link>
             </Menu.Item>
           </Menu>
         </div>

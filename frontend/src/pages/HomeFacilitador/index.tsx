@@ -45,7 +45,7 @@ export function HomeFacilitador() {
   const [celula, setCelula] = useState({} as CelulaProps);
 
   function handleNavigateToFeedback() {
-    history.push(`/feedback/${celula.id_celula}`);
+    history.push(`/listFeedback/${celula.id_celula}`);
   }
  
   useEffect(() => {
