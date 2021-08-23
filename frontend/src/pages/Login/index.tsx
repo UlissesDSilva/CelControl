@@ -63,7 +63,7 @@ export function LoginPacce() {
 
       sessionStorage.setItem('celcontrol:admId', admId);
       
-      history.push('/cadastroCelula');
+      history.push('/homeAdm');
     
     } catch (error) {
       const errorMsg = error.response.data.error;
