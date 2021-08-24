@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { Button, Comment, Avatar } from "antd";
 import { api } from '../../services/api'
 import { toast } from 'react-toastify';
@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import { CommentContainer } from './styles';
 import { useEffect } from 'react';
 import { useState } from 'react';
-import { DeleteOutlined } from '@ant-design/icons';
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 
 import imgADM from "../../assets/pacce-symbol.svg";
 
@@ -75,9 +75,13 @@ const PrevFeedBacks = () => {
             }
             actions={
                 [
+                    <Button  htmlType="submit" style={{border: '0', color:'#f8c806'}}>
+                        <Link to={`updateCelula/${celula.id_celula}`}> <EditOutlined /> </Link>
+                    </Button>,
                     <Button  htmlType="submit" onClick={() => handleRemoveCelula(celula.id_celula)} style={{border: '0', color:'#fd0e0e'}}>
                         <DeleteOutlined />
-                    </Button>
+                    </Button>,
+                    
                 ]
             }
         />
