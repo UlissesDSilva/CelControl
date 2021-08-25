@@ -33,8 +33,6 @@ export function ListCel() {
     }))
  }, [idCel]);
 
-console.log(celulas)
-
 async function handleRemoveCelula(id_celula: number) {
 
     if(!window.confirm("Deseja realmente remover q célula?")){
@@ -53,7 +51,6 @@ async function handleRemoveCelula(id_celula: number) {
 } 
 
 const PrevFeedBacks = () => {
-    console.log(celulas);
     
   return celulas.map((celula, indice) => (
         <Comment

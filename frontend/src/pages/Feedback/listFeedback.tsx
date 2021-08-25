@@ -53,8 +53,7 @@ async function handleRemoveFeedback(id_feedback: number) {
 } 
 
 const PrevFeedBacks = () => {
-    console.log(comments);
-    
+  
   return comments.map(comment => (
         <Comment
             style={{ background: '#FFF', width: '70%', margin: '0 auto', borderRadius: 7 }}

@@ -56,9 +56,7 @@ export function UpdateCelula() {
 
     const history = useHistory()
     const params = useParams() as {id: string}
-    const idCel = params.id
-
-    
+    const idCel = params.id    
     
     useEffect(() => {
         api.get(`/celula/${idCel}`)
@@ -122,8 +120,6 @@ export function UpdateCelula() {
         });
         }
     };
-
-
     
     function changeCelula(event: any) {
         setCelula({
@@ -131,10 +127,7 @@ export function UpdateCelula() {
             [event.target.name]: event.target.value
         })
     }
-
-    console.log(celula);
     
-
     return (
         <Form name="complex-form" onFinish={onSubmit} style={{display: 'flex', justifyContent: 'center', flexDirection: 'column', alignItems: 'center', width: '80vw', margin: '40px auto'}}>
             <div>
