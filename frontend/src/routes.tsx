@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 import { Home } from './pages/Home';
 import { LoginFacilitador, LoginPacce } from './pages/Login';
 import { CadastroAluno, CadastroCelula } from './pages/Cadastro';
+import { UpdateCelula } from './pages/UpdateCelula'
 import { Feedback } from './pages/Feedback';
 import { ListFeedback } from './pages/Feedback/listFeedback'
 import { HomeFacilitador } from './pages/HomeFacilitador'
@@ -30,6 +31,7 @@ export function Routes() {
           <Route path="/loginPacce" component={LoginPacce}/>
           <Route path="/cadastroAluno/:id" exact component={CadastroAluno}/>
           <Route path="/cadastroCelula" exact component={CadastroCelula}/>
+          <Route path="/updateCelula/:id" component={UpdateCelula}/>
           <Route path="/feedback/:id" component={Feedback} />
           <Route path="/listFeedback/:id" component={ListFeedback}/>
           <Route path="/listCelulas"component={ListCel}/>
