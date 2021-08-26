@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { Form, Input, Button, Comment, Avatar } from "antd";
 import { api } from '../../services/api'
 import { toast } from 'react-toastify';
@@ -18,8 +18,7 @@ type CommentProps = {
 export function Feedback() {
   const params = useParams() as { id: string }
   const idCel = params.id;
-
-  const [comments, setComments] = useState<CommentProps[]>([]);
+  const history = useHistory()
   
  async function onSubmit(values: any) {
 
@@ -29,11 +28,10 @@ export function Feedback() {
 
   try {
     const response = await api.post<CommentProps>(`/feedback?celula=${idCel}`, values );
-
-    setComments(prevComments => [ ...prevComments, response.data ]);
     toast.success('Feedback criado com sucesso!!!', {
       position: toast.POSITION.TOP_RIGHT,
     })
+    history.push('/')
   } catch (error) {
     const errMsg = error.response.data.error;
 
@@ -45,37 +43,10 @@ export function Feedback() {
 
  useEffect(() => {
   api.get(`/feedback/${idCel}`)
-    .then(res => setComments(res.data))
     .catch(err => toast.error('Erro ao pegar comentários', {
       position: toast.POSITION.TOP_RIGHT,
     }))
  }, [idCel]);
-
- const PrevFeedBacks = () => {
-  return comments.map(comment => (
-    <Comment
-      style={{ background: '#FFF', width: '70%', margin: '0 auto', borderRadius: 7 }}
-      key={comment.id_celula}
-      author={comment.name}
-      avatar={
-        <Avatar
-          src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-          alt="Han Solo"
-        />
-      }
-      content={
-        <p>
-          {comment.text}
-        </p>
-      }
-      // datetime={
-      //   <Tooltip title={moment().format('YYYY-MM-DD HH:mm:ss')}>
-      //     <span>{moment().fromNow()}</span>
-      //   </Tooltip>
-      // }
-    />
-  ))
-    };
 
   return (
     <>
@@ -107,14 +78,6 @@ export function Feedback() {
           </Button>
         </Form.Item>
       </Form>
-      <CommentContainer>
-        {comments.length > 0 && (
-          <>
-            <strong>Feedbacks e resenhas desta célula</strong>
-            {PrevFeedBacks()} 
-          </>
-        )}
-      </CommentContainer>
     </>
   );
 };
