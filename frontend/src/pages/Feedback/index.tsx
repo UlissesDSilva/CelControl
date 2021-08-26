@@ -25,7 +25,7 @@ export function Feedback() {
   }
 
   try {
-    const response = await api.post<CommentProps>(`/feedback?celula=${idCel}`, values );
+    await api.post(`/feedback?celula=${idCel}`, values );
     toast.success('Feedback criado com sucesso!!!', {
       position: toast.POSITION.TOP_RIGHT,
     })
