@@ -6,13 +6,6 @@ import { toast } from 'react-toastify';
 
 import { useEffect } from 'react';
 
-type CommentProps = {
-  id_feedback: number;
-  name: string;
-  text: string;
-  id_celula: number;
-};
-
 export function Feedback() {
   const params = useParams() as { id: string }
   const idCel = params.id;
