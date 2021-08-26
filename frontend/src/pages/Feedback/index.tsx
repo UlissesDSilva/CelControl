@@ -1,12 +1,10 @@
 import { useParams, useHistory } from 'react-router-dom';
-import { Form, Input, Button, Comment, Avatar } from "antd";
+import { Form, Input, Button } from "antd";
 import { api } from '../../services/api'
 import { toast } from 'react-toastify';
 // import moment from 'moment';
 
-import { CommentContainer } from './styles';
 import { useEffect } from 'react';
-import { useState } from 'react';
 
 type CommentProps = {
   id_feedback: number;
